@@ -1,25 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
+import data from './data/activity_feed.json';
 
 class App extends Component {
+
+  componentDidMount() {
+    console.log(data)
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <h1>test</h1>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+        <h1>hello</h1>
+      </Fragment>
     );
   }
 }
