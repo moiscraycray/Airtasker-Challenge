@@ -1,17 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import data from './data/activity_feed.json';
+import ActivityFeed from './components/activity-feed.js'
 
 class App extends Component {
-
-  componentDidMount() {
-    console.log(data)
-  }
 
   render() {
     return (
       <Fragment>
-        <h1>hello</h1>
+        <div className="container">
+          <div className="grid box_shadow">
+            <ActivityFeed data={data} />
+          </div>
+        </div>
       </Fragment>
     );
   }
