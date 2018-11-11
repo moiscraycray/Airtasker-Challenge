@@ -51,7 +51,7 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> posted a task </span>
-          <a href={`/users/${taskSlug}`}>
+          <a href={`/tasks/${taskSlug}`}>
             <span className="blue">{task}</span>
           </a>
         </li>
@@ -63,7 +63,7 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> completed </span>
-          <a href={`/users/${taskSlug}`}>
+          <a href={`/tasks/${taskSlug}`}>
             <span className="blue">{task}</span>
           </a>
         </li>
@@ -75,7 +75,7 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> assigned </span>
-          <a href={`/users/${taskSlug}`}>
+          <a href={`/tasks/${taskSlug}`}>
             <span className="blue">{task}</span>
           </a>
           <span className="uppercase xsmall boulder"> to </span>
@@ -91,7 +91,7 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> bid on </span>
-          <a href={`/users/${taskSlug}`}>
+          <a href={`/tasks/${taskSlug}`}>
             <span className="blue">{task}</span>
           </a>
         </li>
@@ -103,7 +103,7 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> commented on </span>
-          <a href={`/users/${taskSlug}`}>
+          <a href={`/tasks/${taskSlug}`}>
             <span className="blue">{task}</span>
           </a>
         </li>
