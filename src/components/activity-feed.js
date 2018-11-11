@@ -7,7 +7,8 @@ class ActivityFeed extends Component {
 
   getName = () => {
     let profileIdObj = {}
-    this.props.data.profiles.forEach((x) => {
+    const profiles = this.props.data.profiles
+    profiles.forEach((x) => {
       profileIdObj[x.id] = x.abbreviated_name
     })
     return profileIdObj
@@ -15,7 +16,8 @@ class ActivityFeed extends Component {
 
   getSlugName = () => {
     let slug = {}
-    this.props.data.profiles.forEach((x) => {
+    const profiles = this.props.data.profiles
+    profiles.forEach((x) => {
       slug[x.id] = x.slug
     })
     return slug
@@ -23,13 +25,15 @@ class ActivityFeed extends Component {
 
   getSlugTask = () => {
     let slug = {}
-    this.props.data.tasks.forEach(x => slug[x.id] = x.slug)
+    const tasks = this.props.data.tasks
+    tasks.forEach(x => slug[x.id] = x.slug)
     return slug
   }
 
   getEvent = () => {
     let eventList = []
-    this.props.data.activity_feed.map((x) => {
+    const activity = this.props.data.activity_feed
+    activity.map((x) => {
       eventList.push(x)
     })
     return eventList
@@ -37,7 +41,8 @@ class ActivityFeed extends Component {
 
   getTaskName = () => {
     let taskName = {}
-    this.props.data.tasks.forEach((x) => {
+    const tasks = this.props.data.tasks
+    tasks.forEach((x) => {
       taskName[x.id] = x.name
     })
     return taskName
