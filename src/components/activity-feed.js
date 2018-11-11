@@ -118,13 +118,14 @@ class ActivityFeed extends Component {
     const taskName = this.getTaskName()
     const displayFeed = this.displayFeed
     const slugName = this.getSlugName()
+    const slugTask = this.getSlugTask()
     let feed = events.map((x) => {
       if (x.event === 'assigned') {
         let firstName = x.profile_ids[0]
         let secondName = x.profile_ids[1]
-        return displayFeed(nameId[firstName], x.event, taskName[x.task_id], slugName[firstName], slugName[secondName], nameId[secondName])
+        return displayFeed(nameId[firstName], x.event, taskName[x.task_id], slugTask[x.task_id], slugName[firstName], slugName[secondName], nameId[secondName])
       } else {
-        return displayFeed(nameId[x.profile_ids], x.event, taskName[x.task_id], slugName[x.profile_ids])
+        return displayFeed(nameId[x.profile_ids], x.event, taskName[x.task_id], slugTask[x.task_id], slugName[x.profile_ids])
       }
     })
     return feed
