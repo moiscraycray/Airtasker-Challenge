@@ -12,7 +12,6 @@ class App extends Component {
           <div className="grid box_shadow">
             <ActivityFeed data={data} />
           </div>
-
         </div>
       </Fragment>
     );
