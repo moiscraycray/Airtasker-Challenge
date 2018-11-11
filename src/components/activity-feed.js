@@ -5,7 +5,6 @@ class ActivityFeed extends Component {
     super(props)
   }
 
-
   getName = () => {
     let profileIdObj = {}
     this.props.data.profiles.forEach((x) => {
@@ -16,73 +15,40 @@ class ActivityFeed extends Component {
     //output: {37: "Simon R.", 490: "James T.", 1501: "Jonathan L.", 2046: "Kang C.", 2663: "Edward T."}
   }
 
-  getProfile = () => {
-    let profileId = []
-    this.props.data.activity_feed.map((x) => {
-      profileId.push(x.profile_ids)
-    })
-    return profileId
-  }
-
   getEvent = () => {
     let eventList = []
     this.props.data.activity_feed.map((x) => {
-      if (x.event === 'posted') {
-        eventList.push('posted a task')
-      } else if (x.event === 'completed') {
-        eventList.push(x.event)
-      } else if (x.event === 'bid') {
-        eventList.push('bid on')
-      } else if (x.event === 'comment') {
-        eventList.push('commented on')
-      } else if (x.event === 'posted') {
-        eventList.push('posted a task')
-      } else if (x.event === 'joined') {
-        eventList.push('signed up')
-      } else {
-        eventList.push('assigned')
-      }
+      eventList.push(x)
     })
     return eventList
   }
 
-  getTaskId = () => {
-    let taskId = []
-    this.props.data.activity_feed.map((x) => {
-      taskId.push(x.task_id)
+  getTaskName = () => {
+    let taskName = {}
+    this.props.data.tasks.forEach((x) => {
+      taskName[x.id] = x.name
     })
-    return taskId
-    //output: [6441, 6473, 6333, 6333, 6333, 6333, 6472, 6471, 6470, undefined]
+    return taskName
+    // output: {6333: "Buy me McDonalds", 6441: "Teach me how to fly a drone", 6469: "Pick up roses from florist", 6470: "Take me to rails camp", 6471: "Do a react javascript test for me", 6472: "Pick my car up from garage", 6473: "Guitar lessons"}
   }
 
-  getNameFeed = () => {
-    const nameId = this.getName() // {37: "Simon R.", 490: "James T.", 1501: "Jonathan L.", 2046: "Kang C.", 2663: "Edward T."}
-    const profile = this.getProfile()
-    let name = []
-    profile.map((x) => {
-      name.push(nameId[x])
+  getFeed = () => {
+    const nameId = this.getName()
+    const events = this.getEvent()
+    const taskName = this.getTaskName()
+    let feed = events.map((x) => {
+      console.log(x) // activity object
+      if (x.event === 'posted') {
+        return <li><span className="blue">{nameId[x.profile_ids]}</span> <span className="uppercase xsmall boulder">posted a task</span> <span className="blue">{taskName[x.task_id]}</span></li>
+      }
     })
-    return name
+    return feed
   }
 
   render() {
-    const nameFeed = this.getNameFeed().map((x) => {
-      return <li>{x}</li>
-    })
-
-    const eventFeed = this.getEvent().map((x) => {
-      return <li>{x}</li>
-    })
-
-    const taskFeed = this.getTaskId().map((x) => {
-      return <li>{x}</li>
-    })
-
     return (
       <Fragment>
-        <ul className="col-auto col-bleed-y names">{nameFeed}</ul>
-        <ul className="col-auto col-bleed">{eventFeed}</ul>
-        <ul className="col-auto col-bleed">{taskFeed}</ul>
+        <ul className="col-12 col-bleed-y">{this.getFeed()}</ul>
       </Fragment>
     )
   }

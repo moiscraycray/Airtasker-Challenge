@@ -9,3 +9,19 @@ ul {
 .box_shadow {
   box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
 }
+
+.blue {
+  color: #008FB4;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.xsmall {
+  font-size: 0.8rem;
+}
+
+.boulder {
+  color: #797979;
+}
