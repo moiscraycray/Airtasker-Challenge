@@ -10,9 +10,7 @@ class ActivityFeed extends Component {
     this.props.data.profiles.forEach((x) => {
       profileIdObj[x.id] = x.abbreviated_name
     })
-    return profileIdObj // returns object with id as key and name as value
-
-    //output: {37: "Simon R.", 490: "James T.", 1501: "Jonathan L.", 2046: "Kang C.", 2663: "Edward T."}
+    return profileIdObj
   }
 
   getEvent = () => {
@@ -29,7 +27,6 @@ class ActivityFeed extends Component {
       taskName[x.id] = x.name
     })
     return taskName
-    // output: {6333: "Buy me McDonalds", 6441: "Teach me how to fly a drone", 6469: "Pick up roses from florist", 6470: "Take me to rails camp", 6471: "Do a react javascript test for me", 6472: "Pick my car up from garage", 6473: "Guitar lessons"}
   }
 
   displayFeed = (name, action, task, secondName = '') => {
@@ -88,13 +85,11 @@ class ActivityFeed extends Component {
   }
 
   getFeed = () => {
-    const nameId = this.getName() ////output: {37: "Simon R.", 490: "James T.", 1501: "Jonathan L.", 2046: "Kang C.", 2663: "Edward T."}
-    const events = this.getEvent() // {created_at: "2015-06-24T16:33:43+10:00", template: "{ profiles:37 } assigned { task:6333 } to { profiles:1501 }", event: "assigned", task_id: 6333, profile_ids: Array(2)}
+    const nameId = this.getName()
+    const events = this.getEvent()
     const taskName = this.getTaskName()
     const displayFeed = this.displayFeed
     let feed = events.map((x) => {
-      // console.log(nameId[x.profile_ids]) = undefined
-      // console.log(x.profile_ids)
       if (x.event === 'assigned') {
         let first = x.profile_ids[0]
         let second = x.profile_ids[1]
