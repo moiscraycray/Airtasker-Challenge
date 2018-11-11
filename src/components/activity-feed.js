@@ -18,7 +18,7 @@ class ActivityFeed extends Component {
     this.props.data.profiles.forEach((x) => {
       slug[x.id] = x.slug
     })
-    return slug //{37: "simon-rodwell", 490: "james-tippett", 1501: "jonathan-lui", 2046: "kang-chen", 2663: "edward-tippett"}
+    return slug
   }
 
   getEvent = () => {
@@ -111,7 +111,7 @@ class ActivityFeed extends Component {
     const events = this.getEvent()
     const taskName = this.getTaskName()
     const displayFeed = this.displayFeed
-    const slugName = this.getSlugName() //{37: "simon-rodwell", 490: "james-tippett", 1501: "jonathan-lui", 2046: "kang-chen", 2663: "edward-tippett"}
+    const slugName = this.getSlugName()
     let feed = events.map((x) => {
       if (x.event === 'assigned') {
         let firstName = x.profile_ids[0]
