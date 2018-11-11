@@ -43,7 +43,7 @@ class ActivityFeed extends Component {
   displayFeed = (time, name, action, task, taskSlug, firstNameSlug, secondNameSlug = '', secondName = '') => {
     if (action === 'posted') {
       return (
-        <li className="col-12 col-bleed-x border-bottom">
+        <li key={time + action} className="col-12 col-bleed-x border-bottom">
           <a href={`/users/${firstNameSlug}`}>
             <span className="blue">{name}</span>
           </a>
@@ -55,7 +55,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'completed') {
       return (
-        <li className="col-12 col-bleed-x border-bottom">
+        <li key={time + action} className="col-12 col-bleed-x border-bottom">
           <a href={`/users/${firstNameSlug}`}>
             <span className="blue">{name}</span>
           </a>
@@ -67,7 +67,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'assigned') {
       return (
-        <li className="col-12 col-bleed-x border-bottom">
+        <li key={time + action} className="col-12 col-bleed-x border-bottom">
           <a href={`/users/${firstNameSlug}`}>
             <span className="blue">{name}</span>
           </a>
@@ -83,7 +83,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'bid') {
       return (
-        <li className="col-12 col-bleed-x border-bottom">
+        <li key={time + action} className="col-12 col-bleed-x border-bottom">
           <a href={`/users/${firstNameSlug}`}>
             <span className="blue">{name}</span>
           </a>
@@ -95,7 +95,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'comment') {
       return (
-        <li className="col-12 col-bleed-x border-bottom">
+        <li key={time + action} className="col-12 col-bleed-x border-bottom">
           <a href={`/users/${firstNameSlug}`}>
             <span className="blue">{name}</span>
           </a>
@@ -107,7 +107,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'joined') {
       return (
-        <li className="col-12 col-bleed-x border-bottom">
+        <li key={time + action} className="col-12 col-bleed-x border-bottom">
           <a href={`/users/${firstNameSlug}`}>
             <span className="blue">{name}</span>
           </a>
