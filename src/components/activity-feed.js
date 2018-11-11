@@ -130,21 +130,19 @@ class ActivityFeed extends Component {
     let feed = events.map((x) => {
       let taskId = taskName[x.task_id]
       let taskSlug = slugTask[x.task_id]
+      let firstName = x.profile_ids[0]
+      let firstNameSlug = slugName[firstName]
 
       if (x.event === 'assigned') {
-        let firstName = x.profile_ids[0]
         let secondName = x.profile_ids[1]
-        let firstNameSlug = slugName[firstName]
         let secondNameSlug = slugName[secondName]
         let posterName = nameId[firstName]
         let bidderName = nameId[secondName]
 
         return displayFeed(posterName, x.event, taskId, taskSlug, firstNameSlug, secondNameSlug, bidderName)
       } else {
-        let nameSlug = slugName[x.profile_ids]
         let name = nameId[x.profile_ids]
-
-        return displayFeed(name, x.event, taskId, taskSlug, nameSlug)
+        return displayFeed(name, x.event, taskId, taskSlug, firstNameSlug)
       }
     })
     return feed
