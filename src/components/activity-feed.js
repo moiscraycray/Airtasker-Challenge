@@ -1,46 +1,46 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
 
 class ActivityFeed extends Component {
   constructor(props) {
     super(props)
-  }
+  };
 
   getName = () => {
-    let profileName = {}
-    const profiles = this.props.data.profiles
-    profiles.forEach(x => profileName[x.id] = x.abbreviated_name)
-    return profileName
-  }
+    let profileName = {};
+    const profiles = this.props.data.profiles;
+    profiles.forEach(x => profileName[x.id] = x.abbreviated_name);
+    return profileName;
+  };
 
   getSlugName = () => {
-    let slug = {}
-    const profiles = this.props.data.profiles
-    profiles.forEach(x => slug[x.id] = x.slug)
-    return slug
-  }
+    let slug = {};
+    const profiles = this.props.data.profiles;
+    profiles.forEach(x => slug[x.id] = x.slug);
+    return slug;
+  };
 
   getSlugTask = () => {
-    let slug = {}
-    const tasks = this.props.data.tasks
-    tasks.forEach(x => slug[x.id] = x.slug)
-    return slug
-  }
+    let slug = {};
+    const tasks = this.props.data.tasks;
+    tasks.forEach(x => slug[x.id] = x.slug);
+    return slug;
+  };
 
   getEvent = () => {
-    let eventList = []
-    const activity = this.props.data.activity_feed
-    activity.forEach(x => eventList.push(x))
-    return eventList
-  }
+    let eventList = [];
+    const activity = this.props.data.activity_feed;
+    activity.forEach(x => eventList.push(x));
+    return eventList;
+  };
 
   getTaskName = () => {
-    let taskName = {}
-    const tasks = this.props.data.tasks
-    tasks.forEach(x => taskName[x.id] = x.name)
-    return taskName
-  }
+    let taskName = {};
+    const tasks = this.props.data.tasks;
+    tasks.forEach(x => taskName[x.id] = x.name);
+    return taskName;
+  };
 
-  displayFeed = (name, action, task, taskSlug, firstNameSlug, secondNameSlug = '', secondName = '') => {
+  displayFeed = (time, name, action, task, taskSlug, firstNameSlug, secondNameSlug = '', secondName = '') => {
     if (action === 'posted') {
       return (
         <li className="col-12 col-bleed-x border-bottom">
@@ -117,36 +117,37 @@ class ActivityFeed extends Component {
     } else {
       return <p>error</p>
     }
-  }
+  };
 
   getFeed = () => {
-    const nameId = this.getName()
-    const events = this.getEvent()
-    const taskName = this.getTaskName()
-    const displayFeed = this.displayFeed
-    const slugName = this.getSlugName()
-    const slugTask = this.getSlugTask()
+    const nameId = this.getName();
+    const events = this.getEvent();
+    const taskName = this.getTaskName();
+    const displayFeed = this.displayFeed;
+    const slugName = this.getSlugName();
+    const slugTask = this.getSlugTask();
 
     let feed = events.map((x) => {
-      let taskId = taskName[x.task_id]
-      let taskSlug = slugTask[x.task_id]
-      let firstName = x.profile_ids[0]
-      let firstNameSlug = slugName[firstName]
+      let time = x.created_at
+      let taskId = taskName[x.task_id];
+      let taskSlug = slugTask[x.task_id];
+      let firstName = x.profile_ids[0];
+      let firstNameSlug = slugName[firstName];
 
       if (x.event === 'assigned') {
-        let secondName = x.profile_ids[1]
-        let secondNameSlug = slugName[secondName]
-        let posterName = nameId[firstName]
-        let bidderName = nameId[secondName]
+        let secondName = x.profile_ids[1];
+        let secondNameSlug = slugName[secondName];
+        let posterName = nameId[firstName];
+        let bidderName = nameId[secondName];
 
-        return displayFeed(posterName, x.event, taskId, taskSlug, firstNameSlug, secondNameSlug, bidderName)
+        return displayFeed(time, posterName, x.event, taskId, taskSlug, firstNameSlug, secondNameSlug, bidderName);
       } else {
-        let name = nameId[x.profile_ids]
-        return displayFeed(name, x.event, taskId, taskSlug, firstNameSlug)
+        let name = nameId[x.profile_ids];
+        return displayFeed(time, name, x.event, taskId, taskSlug, firstNameSlug);
       }
-    })
-    return feed
-  }
+    });
+    return feed;
+  };
 
   render() {
     return (
@@ -154,7 +155,7 @@ class ActivityFeed extends Component {
         <ul className="col-12 col-bleed-y">{this.getFeed()}</ul>
       </Fragment>
     )
-  }
-}
+  };
+};
 
-export default ActivityFeed
+export default ActivityFeed;
