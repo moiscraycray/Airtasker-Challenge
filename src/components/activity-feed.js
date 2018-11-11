@@ -13,6 +13,14 @@ class ActivityFeed extends Component {
     return profileIdObj
   }
 
+  getSlug = () => {
+    let slug = {}
+    this.props.data.profiles.forEach((x) => {
+      slug[x.id] = x.slug
+    })
+    console.log(slug)
+  }
+
   getEvent = () => {
     let eventList = []
     this.props.data.activity_feed.map((x) => {
@@ -33,7 +41,9 @@ class ActivityFeed extends Component {
     if (action === 'posted') {
       return (
         <li className="col-12 col-bleed-x border-bottom">
-          <span className="blue">{name}</span>
+          <a href="/users/">
+            <span className="blue">{name}</span>
+          </a>
           <span className="uppercase xsmall boulder"> posted a task </span>
           <span className="blue">{task}</span>
         </li>
@@ -102,6 +112,7 @@ class ActivityFeed extends Component {
   }
 
   render() {
+    this.getSlug()
     return (
       <Fragment>
         <ul className="col-12 col-bleed-y">{this.getFeed()}</ul>
