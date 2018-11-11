@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './styles/reflex.css';
 import './styles/index.css';
@@ -9,13 +9,11 @@ class Index extends Component {
 
   render() {
     return (
-      <Fragment>
-        <div className="container">
-          <div className="grid box_shadow">
-            <ActivityFeed data={data} />
-          </div>
+      <div className="container">
+        <div className="grid box_shadow">
+          <ActivityFeed data={data} />
         </div>
-      </Fragment>
+      </div>
     );
   }
 }
