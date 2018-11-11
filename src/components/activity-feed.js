@@ -34,7 +34,56 @@ class ActivityFeed extends Component {
 
   displayFeed = (name, action, task) => {
     if (action === 'posted') {
-      return <li><span className="blue">{name}</span> <span className="uppercase xsmall boulder">posted a task</span> <span className="blue">{task}</span></li>
+      return (
+        <li>
+          <span className="blue">{name}</span>
+          <span className="uppercase xsmall boulder"> posted a task </span>
+          <span className="blue">{task}</span>
+        </li>
+      )
+    } else if (action === 'completed') {
+      return (
+        <li>
+          <span className="blue">{name}</span>
+          <span className="uppercase xsmall boulder"> completed </span>
+          <span className="blue">{task}</span>
+        </li>
+      )
+    } else if (action === 'assigned') {
+      return (
+        <li>
+          <span className="blue">{name}</span>
+          <span className="uppercase xsmall boulder"> assigned </span>
+          <span className="blue">{task}</span>
+          <span className="uppercase xsmall boulder"> to </span>
+          <span className="blue"></span>
+        </li>
+      )
+    } else if (action === 'bid') {
+      return (
+        <li>
+          <span className="blue">{name}</span>
+          <span className="uppercase xsmall boulder"> bid on </span>
+          <span className="blue">{task}</span>
+        </li>
+      )
+    } else if (action === 'comment') {
+      return (
+        <li>
+          <span className="blue">{name}</span>
+          <span className="uppercase xsmall boulder"> commented on </span>
+          <span className="blue">{task}</span>
+        </li>
+      )
+    } else if (action === 'joined') {
+      return (
+        <li>
+          <span className="blue">{name}</span>
+          <span className="uppercase xsmall boulder"> signed up </span>
+        </li>
+      )
+    } else {
+      return <p>error</p>
     }
   }
 
@@ -44,9 +93,10 @@ class ActivityFeed extends Component {
     const taskName = this.getTaskName()
     const displayFeed = this.displayFeed
     let feed = events.map((x) => {
-      if (x.event === 'posted') {
-        return displayFeed(nameId[x.profile_ids], x.event, taskName[x.task_id])
-      }
+
+        // console.log(nameId[x.profile_ids])
+
+      return displayFeed(nameId[x.profile_ids], x.event, taskName[x.task_id])
     })
     return feed
   }
