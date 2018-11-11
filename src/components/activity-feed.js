@@ -21,6 +21,12 @@ class ActivityFeed extends Component {
     return slug
   }
 
+  getSlugTask = () => {
+    let slug = {}
+    this.props.data.tasks.forEach(x => slug[x.id] = x.slug)
+    return slug
+  }
+
   getEvent = () => {
     let eventList = []
     this.props.data.activity_feed.map((x) => {
