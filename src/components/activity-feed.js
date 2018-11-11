@@ -43,7 +43,7 @@ class ActivityFeed extends Component {
     return taskName
   }
 
-  displayFeed = (name, action, task, firstNameSlug, secondNameSlug = '', secondName = '') => {
+  displayFeed = (name, action, task, taskSlug, firstNameSlug, secondNameSlug = '', secondName = '') => {
     if (action === 'posted') {
       return (
         <li className="col-12 col-bleed-x border-bottom">
@@ -51,7 +51,9 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> posted a task </span>
-          <span className="blue">{task}</span>
+          <a href={`/users/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
         </li>
       )
     } else if (action === 'completed') {
@@ -61,7 +63,9 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> completed </span>
-          <span className="blue">{task}</span>
+          <a href={`/users/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
         </li>
       )
     } else if (action === 'assigned') {
@@ -71,7 +75,9 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> assigned </span>
-          <span className="blue">{task}</span>
+          <a href={`/users/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
           <span className="uppercase xsmall boulder"> to </span>
           <a href={`/users/${secondNameSlug}`}>
             <span className="blue">{secondName}</span>
@@ -85,7 +91,9 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> bid on </span>
-          <span className="blue">{task}</span>
+          <a href={`/users/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
         </li>
       )
     } else if (action === 'comment') {
@@ -95,7 +103,9 @@ class ActivityFeed extends Component {
             <span className="blue">{name}</span>
           </a>
           <span className="uppercase xsmall boulder"> commented on </span>
-          <span className="blue">{task}</span>
+          <a href={`/users/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
         </li>
       )
     } else if (action === 'joined') {
