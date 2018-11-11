@@ -32,14 +32,20 @@ class ActivityFeed extends Component {
     // output: {6333: "Buy me McDonalds", 6441: "Teach me how to fly a drone", 6469: "Pick up roses from florist", 6470: "Take me to rails camp", 6471: "Do a react javascript test for me", 6472: "Pick my car up from garage", 6473: "Guitar lessons"}
   }
 
+  displayFeed = (name, action, task) => {
+    if (action === 'posted') {
+      return <li><span className="blue">{name}</span> <span className="uppercase xsmall boulder">posted a task</span> <span className="blue">{task}</span></li>
+    }
+  }
+
   getFeed = () => {
     const nameId = this.getName()
     const events = this.getEvent()
     const taskName = this.getTaskName()
+    const displayFeed = this.displayFeed
     let feed = events.map((x) => {
-      console.log(x) // activity object
       if (x.event === 'posted') {
-        return <li><span className="blue">{nameId[x.profile_ids]}</span> <span className="uppercase xsmall boulder">posted a task</span> <span className="blue">{taskName[x.task_id]}</span></li>
+        return displayFeed(nameId[x.profile_ids], x.event, taskName[x.task_id])
       }
     })
     return feed
