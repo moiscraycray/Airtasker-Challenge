@@ -6,12 +6,12 @@ class ActivityFeed extends Component {
   }
 
   getName = () => {
-    let profileIdObj = {}
+    let profileName = {}
     const profiles = this.props.data.profiles
     profiles.forEach((x) => {
-      profileIdObj[x.id] = x.abbreviated_name
+      profileName[x.id] = x.abbreviated_name
     })
-    return profileIdObj
+    return profileName
   }
 
   getSlugName = () => {
