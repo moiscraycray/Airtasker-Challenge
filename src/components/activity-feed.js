@@ -8,18 +8,14 @@ class ActivityFeed extends Component {
   getName = () => {
     let profileName = {}
     const profiles = this.props.data.profiles
-    profiles.forEach((x) => {
-      profileName[x.id] = x.abbreviated_name
-    })
+    profiles.forEach(x => profileName[x.id] = x.abbreviated_name)
     return profileName
   }
 
   getSlugName = () => {
     let slug = {}
     const profiles = this.props.data.profiles
-    profiles.forEach((x) => {
-      slug[x.id] = x.slug
-    })
+    profiles.forEach(x => slug[x.id] = x.slug)
     return slug
   }
 
@@ -33,18 +29,14 @@ class ActivityFeed extends Component {
   getEvent = () => {
     let eventList = []
     const activity = this.props.data.activity_feed
-    activity.forEach((x) => {
-      eventList.push(x)
-    })
+    activity.forEach(x => eventList.push(x))
     return eventList
   }
 
   getTaskName = () => {
     let taskName = {}
     const tasks = this.props.data.tasks
-    tasks.forEach((x) => {
-      taskName[x.id] = x.name
-    })
+    tasks.forEach(x => taskName[x.id] = x.name)
     return taskName
   }
 
@@ -134,7 +126,7 @@ class ActivityFeed extends Component {
     const displayFeed = this.displayFeed
     const slugName = this.getSlugName()
     const slugTask = this.getSlugTask()
-    
+
     let feed = events.map((x) => {
       if (x.event === 'assigned') {
         let firstName = x.profile_ids[0]
