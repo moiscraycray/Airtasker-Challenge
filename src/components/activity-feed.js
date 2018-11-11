@@ -33,7 +33,7 @@ class ActivityFeed extends Component {
   getEvent = () => {
     let eventList = []
     const activity = this.props.data.activity_feed
-    activity.map((x) => {
+    activity.forEach((x) => {
       eventList.push(x)
     })
     return eventList
@@ -134,6 +134,7 @@ class ActivityFeed extends Component {
     const displayFeed = this.displayFeed
     const slugName = this.getSlugName()
     const slugTask = this.getSlugTask()
+    
     let feed = events.map((x) => {
       if (x.event === 'assigned') {
         let firstName = x.profile_ids[0]
