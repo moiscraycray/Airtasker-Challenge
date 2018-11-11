@@ -25,3 +25,7 @@ ul {
 .boulder {
   color: #797979;
 }
+
+.border-bottom {
+  border-bottom: 1px solid #eeeeee;
+}

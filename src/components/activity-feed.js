@@ -35,7 +35,7 @@ class ActivityFeed extends Component {
   displayFeed = (name, action, task) => {
     if (action === 'posted') {
       return (
-        <li>
+        <li className="col-12 col-bleed-x border-bottom">
           <span className="blue">{name}</span>
           <span className="uppercase xsmall boulder"> posted a task </span>
           <span className="blue">{task}</span>
@@ -43,7 +43,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'completed') {
       return (
-        <li>
+        <li className="col-12 col-bleed-x border-bottom">
           <span className="blue">{name}</span>
           <span className="uppercase xsmall boulder"> completed </span>
           <span className="blue">{task}</span>
@@ -51,7 +51,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'assigned') {
       return (
-        <li>
+        <li className="col-12 col-bleed-x border-bottom">
           <span className="blue">{name}</span>
           <span className="uppercase xsmall boulder"> assigned </span>
           <span className="blue">{task}</span>
@@ -61,7 +61,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'bid') {
       return (
-        <li>
+        <li className="col-12 col-bleed-x border-bottom">
           <span className="blue">{name}</span>
           <span className="uppercase xsmall boulder"> bid on </span>
           <span className="blue">{task}</span>
@@ -69,7 +69,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'comment') {
       return (
-        <li>
+        <li className="col-12 col-bleed-x border-bottom">
           <span className="blue">{name}</span>
           <span className="uppercase xsmall boulder"> commented on </span>
           <span className="blue">{task}</span>
@@ -77,7 +77,7 @@ class ActivityFeed extends Component {
       )
     } else if (action === 'joined') {
       return (
-        <li>
+        <li className="col-12 col-bleed-x border-bottom">
           <span className="blue">{name}</span>
           <span className="uppercase xsmall boulder"> signed up </span>
         </li>
