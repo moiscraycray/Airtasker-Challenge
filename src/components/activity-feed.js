@@ -13,6 +13,20 @@ class ActivityFeed extends Component {
     return profileIdObj
   }
 
+  getSlugName = () => {
+    let slug = {}
+    this.props.data.profiles.forEach((x) => {
+      slug[x.id] = x.slug
+    })
+    return slug
+  }
+
+  getSlugTask = () => {
+    let slug = {}
+    this.props.data.tasks.forEach(x => slug[x.id] = x.slug)
+    return slug
+  }
+
   getEvent = () => {
     let eventList = []
     this.props.data.activity_feed.map((x) => {
@@ -29,53 +43,77 @@ class ActivityFeed extends Component {
     return taskName
   }
 
-  displayFeed = (name, action, task, secondName = '') => {
+  displayFeed = (name, action, task, taskSlug, firstNameSlug, secondNameSlug = '', secondName = '') => {
     if (action === 'posted') {
       return (
         <li className="col-12 col-bleed-x border-bottom">
-          <span className="blue">{name}</span>
+          <a href={`/users/${firstNameSlug}`}>
+            <span className="blue">{name}</span>
+          </a>
           <span className="uppercase xsmall boulder"> posted a task </span>
-          <span className="blue">{task}</span>
+          <a href={`/tasks/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
         </li>
       )
     } else if (action === 'completed') {
       return (
         <li className="col-12 col-bleed-x border-bottom">
-          <span className="blue">{name}</span>
+          <a href={`/users/${firstNameSlug}`}>
+            <span className="blue">{name}</span>
+          </a>
           <span className="uppercase xsmall boulder"> completed </span>
-          <span className="blue">{task}</span>
+          <a href={`/tasks/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
         </li>
       )
     } else if (action === 'assigned') {
       return (
         <li className="col-12 col-bleed-x border-bottom">
-          <span className="blue">{name}</span>
+          <a href={`/users/${firstNameSlug}`}>
+            <span className="blue">{name}</span>
+          </a>
           <span className="uppercase xsmall boulder"> assigned </span>
-          <span className="blue">{task}</span>
+          <a href={`/tasks/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
           <span className="uppercase xsmall boulder"> to </span>
-          <span className="blue">{secondName}</span>
+          <a href={`/users/${secondNameSlug}`}>
+            <span className="blue">{secondName}</span>
+          </a>
         </li>
       )
     } else if (action === 'bid') {
       return (
         <li className="col-12 col-bleed-x border-bottom">
-          <span className="blue">{name}</span>
+          <a href={`/users/${firstNameSlug}`}>
+            <span className="blue">{name}</span>
+          </a>
           <span className="uppercase xsmall boulder"> bid on </span>
-          <span className="blue">{task}</span>
+          <a href={`/tasks/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
         </li>
       )
     } else if (action === 'comment') {
       return (
         <li className="col-12 col-bleed-x border-bottom">
-          <span className="blue">{name}</span>
+          <a href={`/users/${firstNameSlug}`}>
+            <span className="blue">{name}</span>
+          </a>
           <span className="uppercase xsmall boulder"> commented on </span>
-          <span className="blue">{task}</span>
+          <a href={`/tasks/${taskSlug}`}>
+            <span className="blue">{task}</span>
+          </a>
         </li>
       )
     } else if (action === 'joined') {
       return (
         <li className="col-12 col-bleed-x border-bottom">
-          <span className="blue">{name}</span>
+          <a href={`/users/${firstNameSlug}`}>
+            <span className="blue">{name}</span>
+          </a>
           <span className="uppercase xsmall boulder"> signed up </span>
         </li>
       )
@@ -89,13 +127,15 @@ class ActivityFeed extends Component {
     const events = this.getEvent()
     const taskName = this.getTaskName()
     const displayFeed = this.displayFeed
+    const slugName = this.getSlugName()
+    const slugTask = this.getSlugTask()
     let feed = events.map((x) => {
       if (x.event === 'assigned') {
-        let first = x.profile_ids[0]
-        let second = x.profile_ids[1]
-        return displayFeed(nameId[first], x.event, taskName[x.task_id], nameId[second])
+        let firstName = x.profile_ids[0]
+        let secondName = x.profile_ids[1]
+        return displayFeed(nameId[firstName], x.event, taskName[x.task_id], slugTask[x.task_id], slugName[firstName], slugName[secondName], nameId[secondName])
       } else {
-        return displayFeed(nameId[x.profile_ids], x.event, taskName[x.task_id])
+        return displayFeed(nameId[x.profile_ids], x.event, taskName[x.task_id], slugTask[x.task_id], slugName[x.profile_ids])
       }
     })
     return feed
